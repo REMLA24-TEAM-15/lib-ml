@@ -38,10 +38,11 @@ jobs:
         uses: actions/github-script@v5
         if: env.IS_NEW == 'true'
         with:
+          github-token: ${{ secrets.GH_TOKEN }}
           script: |
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${TAG}',
+              ref: 'refs/tags/v${TAG}',
               sha: context.sha
             })
