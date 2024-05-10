@@ -1,0 +1,41 @@
+#tag.yaml
+---
+name: Create TAG
+on: push
+jobs:
+  check-tag:
+    runs-on: ubuntu-latest
+    env:
+      TAG: 0.0.1
+      IS_NEW: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+
+      - name: Retrieve tag from setup.py
+        run: |
+          TAG=$(python setup.py --version)
+          echo "::set-env name=TAG::TAG"
+
+      - name: Check for Tag
+        run: |
+          if git show-ref --tags --verify --quiet "refs/tags/${TAG}"; then
+            echo "::set-env name=IS_NEW::false"
+            echo "Tag ${TAG} exists"
+          else
+            echo "::set-env name=IS_NEW::true"
+            echo "Tag ${TAG} does not exist"
+          fi
+
+      - name:
+        if: env.IS_NEW == 'true'
+        run: |
+          git tag -a v${{ env.TAG }}
+          git push origin --tags

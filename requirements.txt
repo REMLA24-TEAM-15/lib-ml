@@ -1,0 +1,5 @@
+kaggle==1.6.12
+PyYAML==6.0.1
+tensorflow==2.16.1
+scikit-learn==1.4.2
+joblib==1.4.2
