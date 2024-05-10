@@ -6,7 +6,7 @@ jobs:
   check-tag:
     runs-on: ubuntu-latest
     env:
-      TAG: 0.0.1
+      TAG: ''
       IS_NEW: false
     steps:
       - name: Checkout
@@ -22,7 +22,7 @@ jobs:
       - name: Retrieve tag from setup.py
         run: |
           TAG=$(python setup.py --version)
-          echo "::set-env name=TAG::TAG"
+          echo "TAG=&TAG" >> $GITHUB_ENV
 
       - name: Check for Tag
         run: |
