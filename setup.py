@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='libml_URLPhishing',
-    version='0.0.7',
+    version='0.0.8',
     description='Library to download and process data for the URL phishing project',
     author='Shantnav Agarwal',
     project_urls={
