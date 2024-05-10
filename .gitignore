@@ -1,0 +1,3 @@
+build/*
+docs/*
+libml.egg-info/*
