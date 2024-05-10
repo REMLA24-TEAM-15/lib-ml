@@ -11,6 +11,10 @@ jobs:
     env:
       KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
       KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}
+      name: pypi
+      url: https://test.pypi.org/p/libml-URLPhishing
+    permissions:
+      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -26,10 +30,12 @@ jobs:
       # ADJUST THIS: build your documentation into docs/.
       # We use a custom build script for pdoc itself, ideally you just run `pdoc -o docs/ ...` here.
       - run: pdoc --html -o docs/ libml
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/libml/
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
 
   # Deploy the artifact to GitHub pages.
   # This is a separate job so that only actions/deploy-pages has the necessary permissions.
@@ -46,17 +52,17 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
-  pypi-publish:
-    name: Upload release to PyPI
-    runs-on: ubuntu-latest
-    environment:
-      name: pypi
-      url: https://test.pypi.org/p/libml-URLPhishing
-    permissions:
-      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
-    steps:
-      # retrieve your distributions here
-      - name: Publish package distributions to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+#  pypi-publish:
+#    name: Upload release to PyPI
+#    runs-on: ubuntu-latest
+#    environment:
+#      name: pypi
+#      url: https://test.pypi.org/p/libml-URLPhishing
+#    permissions:
+#      id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
+#    steps:
+#      # retrieve your distributions here
+#      - name: Publish package distributions to PyPI
+#        uses: pypa/gh-action-pypi-publish@release/v1
+#        with:
+#          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
