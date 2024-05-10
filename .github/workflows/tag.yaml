@@ -1,13 +1,16 @@
 #tag.yaml
 ---
 name: Create TAG
-on: push
+on:
+  push:
+    branches:
+      - main
 jobs:
   check-tag:
     runs-on: ubuntu-latest
     env:
       TAG: ''
-      IS_NEW: false
+      IS_NEW: 'false'
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -36,7 +39,7 @@ jobs:
 
       - name: Create Tag
         uses: actions/github-script@v5
-        if: env.IS_NEW == 'true'
+        if: env.IS_NEW == 'false'
         with:
           github-token: ${{ secrets.GH_TOKEN }}
           script: |
