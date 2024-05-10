@@ -22,15 +22,15 @@ jobs:
       - name: Retrieve tag from setup.py
         run: |
           TAG=$(python setup.py --version)
-          echo "TAG=&TAG" >> $GITHUB_ENV
+          echo "TAG=$TAG" >> $GITHUB_ENV
 
       - name: Check for Tag
         run: |
           if git show-ref --tags --verify --quiet "refs/tags/${TAG}"; then
-            echo "::set-env name=IS_NEW::false"
+            echo "IS_NEW=false" >> $GITHUB_ENV
             echo "Tag ${TAG} exists"
           else
-            echo "::set-env name=IS_NEW::true"
+            echo "IS_NEW=true" >> $GITHUB_ENV
             echo "Tag ${TAG} does not exist"
           fi
 
