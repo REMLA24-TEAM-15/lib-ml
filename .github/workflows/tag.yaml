@@ -34,8 +34,14 @@ jobs:
             echo "Tag ${TAG} does not exist"
           fi
 
-      - name:
+      - name: Create Tag
+        uses: actions/github-script@v5
         if: env.IS_NEW == 'true'
-        run: |
-          git tag -a v${{ env.TAG }}
-          git push origin --tags
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${TAG}',
+              sha: context.sha
+            })
