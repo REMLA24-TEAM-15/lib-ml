@@ -24,7 +24,7 @@ jobs:
       # ADJUST THIS: install all dependencies (including pdoc)
       - run: pip install poetry
       - run: poetry install --no-root
-      - run: python -m build --wheel
+      - run: poetry build --wheel
       - run: pip install dist/*
       - run: pip install pdoc3
       # ADJUST THIS: build your documentation into docs/.
