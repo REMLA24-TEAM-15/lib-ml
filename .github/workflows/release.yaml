@@ -34,10 +34,10 @@ jobs:
       - run: poetry build
 
 # Install the built package
-      - run: pip install dist/*.whl
+      - run: poetry run pip install dist/*.whl
 
 # Build your documentation into docs/
-      - run: poetry run pdoc --html -o docs/ libml
+      - run: poetry run python -m pdoc --html -o docs/ libml
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/libml/
