@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "libml_URLPhishing"
-version = "0.1.0"
+version = "0.1.1"
 description = "Library to download and process data for the URL phishing project"
 authors = ["Shantnav Agarwal"]
 readme = "ReadMe.md"
