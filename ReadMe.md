@@ -11,3 +11,5 @@ Library to pre-process data for the URL phishing project
 
 
 
+## Tokens Required:
+For this repository you require a GitHub token, Kaggle key , kaggle username and Test_pypi - secret tokens (e.g GH_Token) with package and repo read/write permissions. 
