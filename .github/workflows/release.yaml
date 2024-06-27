@@ -23,13 +23,21 @@ jobs:
 
       # ADJUST THIS: install all dependencies (including pdoc)
       - run: pip install poetry
-      - run: poetry install --no-root
+
+# Install all dependencies (including pdoc3) using Poetry
+      - run: poetry install
+
+# Ensure Poetry's environment is correctly set up
+      - run: poetry run pip install pdoc3
+
+# Build the package
       - run: poetry build
+
+# Install the built package
       - run: pip install dist/*.whl
 
-      - run: pip install pdoc3
-# Ensure running pdoc within the same environment
-      - run: poetry run pdoc3 --html -o docs/ libml
+# Build your documentation into docs/
+      - run: poetry run pdoc --html -o docs/ libml
       - uses: actions/upload-pages-artifact@v3
         with:
           path: docs/libml/
