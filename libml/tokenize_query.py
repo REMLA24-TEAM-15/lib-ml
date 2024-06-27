@@ -11,7 +11,7 @@ class TokenizeQuery:
             word_set: Dictionary of words and their indices
         """
         self.tokenizer = Tokenizer(lower=True, char_level=True, oov_token='-n-')
-        if self.word_set:
+        if word_set:
             self.word_set = word_set
             self.tokenizer.word_index = self.word_set
 
