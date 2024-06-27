@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "libml"
+name = "libml_URLPhishing"
 version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+description = "Library to download and process data for the URL phishing project"
+authors = ["Shantnav Agarwal"]
 readme = "ReadMe.md"
 
 [tool.poetry.dependencies]
