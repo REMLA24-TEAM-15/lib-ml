@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='libml_URLPhishing',
-    version='4.1.1',
+    version='4.1.2',
     long_description='Library to download and process data for the URL phishing project',
     description='Library to download and process data for the URL phishing project',
     author='Shantnav Agarwal',
@@ -13,6 +13,6 @@ setup(
     install_requires=[
         'tensorflow>=2.16.1',
         'numpy>=1.26.4',
-        'scikit-learn>==1.5.0'
+        'scikit-learn>=1.5.0'
     ]
 )
